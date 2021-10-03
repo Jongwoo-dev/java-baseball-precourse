@@ -28,4 +28,34 @@ public class BaseballAnswerModel {
 		} while(answer.size() < 3);
 		return answer;
 	}
+	
+	/**
+	 * 입력값과 정답의 비교
+	 * @param input 정답 입력값
+	 * @return 비교 결과 객체 반환
+	 */
+	public BaseballCompareResultVO compareAnswer(String input) {
+		if (!verifyAnswer(input)) {
+			return new BaseballCompareResultVO(true);
+		}
+		//TODO 정답 입력값 비교 로직 구현
+		return new BaseballCompareResultVO(0, 0);
+	}
+	
+	/**
+	 * 야구게임 정답 입력값 유효성 검사
+	 * @param input 정답 입력값
+	 * @return 올바른 입력값이면 true, 아니면 false
+	 */
+	public boolean verifyAnswer(String input) {
+		if (input == null || input.length() != 3) {
+			return false;
+		}
+		try {
+			Integer.parseInt(input);
+		} catch(NumberFormatException nfe) {
+			return false;
+		}
+		return true;
+	}
 }
