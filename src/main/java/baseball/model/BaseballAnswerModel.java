@@ -47,7 +47,7 @@ public class BaseballAnswerModel {
 	 * @param input 정답 입력값
 	 * @return 올바른 입력값이면 true, 아니면 false
 	 */
-	public boolean verifyAnswer(String input) {
+	private boolean verifyAnswer(String input) {
 		if (input == null || input.length() != 3) {
 			return false;
 		}
