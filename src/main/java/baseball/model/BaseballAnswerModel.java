@@ -1,5 +1,7 @@
 package baseball.model;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -48,7 +50,7 @@ public class BaseballAnswerModel {
 	 * @return 올바른 입력값이면 true, 아니면 false
 	 */
 	private boolean verifyAnswer(String input) {
-		if (input == null || input.length() != 3) {
+		if (input == null || input.length() != 3 || checkForDuplicateChar(input)) {
 			return false;
 		}
 		try {
@@ -57,5 +59,15 @@ public class BaseballAnswerModel {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * 입력값중 중복된 문자가 있는지 체크
+	 * @param input 정답 입력값
+	 * @return 중복된 문자가 있으면 true, 없으면 false
+	 */
+	private boolean checkForDuplicateChar(String input) {
+		Set<String> strSet = new HashSet<>(Arrays.asList(input.split("")));
+		return strSet.size() != input.length();
 	}
 }

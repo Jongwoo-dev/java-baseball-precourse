@@ -30,7 +30,7 @@ public class BaseballAnswerModelTest {
 	
 	@ParameterizedTest
 	@NullAndEmptySource
-	@ValueSource(strings = {"a","2","3232","asd"})
+	@ValueSource(strings = {"a","2","3214","asd", "223"})
 	void 야구게임_잘못된_정답_입력값_처리(String input) {
 		assertThat(answer.compareAnswer(input)).extracting(result -> result.isError()).isEqualTo(true);
 	}
