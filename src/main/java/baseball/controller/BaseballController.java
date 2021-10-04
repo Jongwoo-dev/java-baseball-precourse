@@ -9,16 +9,17 @@ public class BaseballController {
 	private BaseballView view = new BaseballView();
 	
 	/**
-	 * 야구게임 시작
+	 * 야구게임 시작(단판)
 	 */
 	public void gameStart() {
 		BaseballAnswerModel answer = new BaseballAnswerModel();
+		boolean endGame = false;
 		do {
 			String userInput = getInputAnswer();
-			System.out.println("입력값 : " + userInput);
 			BaseballCompareResultVO result = answer.compareAnswer(userInput);
-			System.out.println("비교 결과 : " + result);
-		} while(true);
+			view.printLineResult(result);
+			endGame = result.isCorrectAnswer();
+		} while(!endGame);
 	}
 	
 	/**

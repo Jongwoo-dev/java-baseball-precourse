@@ -37,7 +37,12 @@ public class BaseballCompareResultVO {
 	
 	@Override
 	public String toString() {
-		return "BaseballCompareResultVO [strike=" + strike + ", ball=" + ball + ", isError=" + isError + "]";
+		if (strike == 0 && ball == 0) {
+			return "낫싱";
+		}
+		String result = strike > 0 ? strike + "스트라이크 " : "";
+		result += ball > 0 ? ball + "볼" : "";
+		return result.trim();
 	}
 	@Override
 	public boolean equals(Object obj) {
