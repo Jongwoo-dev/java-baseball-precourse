@@ -43,8 +43,48 @@ public class BaseballAnswerModel {
 		if (!verifyAnswer(input)) {
 			return new BaseballCompareResultVO(true);
 		}
-		//TODO 정답 입력값 비교 로직 구현
-		return new BaseballCompareResultVO(0, 0);
+		return calculateStrikeBall(input);
+	}
+
+	/**
+	 * 입력값과 정답의 비교 결과값을 계산
+	 * @param input 정답 입력값
+	 * @return 비교 결과 객체
+	 */
+	private BaseballCompareResultVO calculateStrikeBall(String input) {
+		int totalMatching = getTotalMatching(input);
+		int strike = getExactMatching(input);
+		int ball = totalMatching - strike;
+		return new BaseballCompareResultVO(strike, ball);
+	}
+
+	/**
+	 * 자릿수 무관 일치하는 입력값 개수 반환
+	 * @param input 정답 입력값
+	 * @return 자릿수 관계없는 정답과 입력값이 일치하는 갯수
+	 */
+	private int getTotalMatching(String input) {
+		int matching = 0;
+		for (int i = 0; i < input.length(); i++) {
+			int number = Character.getNumericValue(input.charAt(i));
+			matching += this.answer.contains(number) ? 1 : 0;
+		}
+		return matching;
+	}
+
+	/**
+	 * 자릿수까지 일치하는 입력값 개수 반환
+	 * @param input 정답 입력값
+	 * @return 자릿수까지 정답과 입력값이 일치하는 갯수
+	 */
+	private int getExactMatching(String input) {
+		int matching = 0;
+		int i = 0;
+		for (Integer numberAnswer : this.answer) {
+			int numberInput = Character.getNumericValue(input.charAt(i++));
+			matching += numberAnswer == numberInput ? 1 : 0;
+		}
+		return matching;
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package baseball.controller;
 
+import baseball.model.BaseballAnswerModel;
+import baseball.model.BaseballCompareResultVO;
 import baseball.view.BaseballView;
 import nextstep.utils.Console;
 
@@ -10,9 +12,12 @@ public class BaseballController {
 	 * 야구게임 시작
 	 */
 	public void gameStart() {
+		BaseballAnswerModel answer = new BaseballAnswerModel();
 		do {
-			String userAnswer = getInputAnswer();
-			System.out.println("입력값 : " + userAnswer);
+			String userInput = getInputAnswer();
+			System.out.println("입력값 : " + userInput);
+			BaseballCompareResultVO result = answer.compareAnswer(userInput);
+			System.out.println("비교 결과 : " + result);
 		} while(true);
 	}
 	
