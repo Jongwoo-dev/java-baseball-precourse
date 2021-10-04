@@ -19,13 +19,13 @@ public class BaseballAnswerModelTest {
 
 	@Test
 	void 야구게임_정답_생성_길이_검사() {
-		assertThat(answer.makeAnswer())
+		assertThat(answer.getAnswer())
 		.hasSize(3);
 	}
 
 	@Test
 	void 야구게임_정답_생성_값_유효성_검사() {
-		assertThat(answer.makeAnswer()).allMatch(num -> num > 0 && num < 10);
+		assertThat(answer.getAnswer()).allMatch(num -> num > 0 && num < 10);
 	}
 	
 	@ParameterizedTest

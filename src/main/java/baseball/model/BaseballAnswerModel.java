@@ -10,6 +10,11 @@ import nextstep.utils.Randoms;
 public class BaseballAnswerModel {
 	private Set<Integer> answer;
 
+	/* Constructor */
+	public BaseballAnswerModel() {
+		this.makeAnswer();
+	}
+
 	/* Getter, Setter */
 	public Set<Integer> getAnswer() {
 		return answer;
@@ -21,14 +26,12 @@ public class BaseballAnswerModel {
 	/* Logic */
 	/**
 	 * 야구게임 정답 생성
-	 * @return 서로다른 랜덤한 한자리 숫자 3개를 가지는 Set
 	 */
-	public Set<Integer> makeAnswer() {
+	private void makeAnswer() {
 		answer = new LinkedHashSet<>();
 		do {
 			answer.add(Randoms.pickNumberInRange(1, 9));
 		} while(answer.size() < 3);
-		return answer;
 	}
 	
 	/**
