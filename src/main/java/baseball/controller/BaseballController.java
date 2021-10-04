@@ -9,9 +9,31 @@ public class BaseballController {
 	private BaseballView view = new BaseballView();
 	
 	/**
+	 * 프로그램 시작
+	 */
+	public void run() {
+		do {
+			gameStart();
+		} while("1".equals(getInputRestart()));
+	}
+	
+	/**
+	 * 재시작 여부 받아오기
+	 * @return "1" 또는 "2"
+	 */
+	private String getInputRestart() {
+		String input = "";
+		do {
+			view.printLineRestartQuestion();
+			input = Console.readLine();
+		} while(!"1".equals(input) && !"2".equals(input));
+		return input;
+	}
+	
+	/**
 	 * 야구게임 시작(단판)
 	 */
-	public void gameStart() {
+	private void gameStart() {
 		BaseballAnswerModel answer = new BaseballAnswerModel();
 		boolean endGame = false;
 		do {
