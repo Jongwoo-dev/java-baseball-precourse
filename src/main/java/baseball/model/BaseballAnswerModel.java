@@ -93,15 +93,10 @@ public class BaseballAnswerModel {
 	 * @return 올바른 입력값이면 true, 아니면 false
 	 */
 	private boolean verifyAnswer(String input) {
-		if (input == null || input.length() != 3 || checkForDuplicateChar(input)) {
+		if (input == null || checkForDuplicateChar(input)) {
 			return false;
 		}
-		try {
-			Integer.parseInt(input);
-		} catch(NumberFormatException nfe) {
-			return false;
-		}
-		return true;
+		return input.matches("^[1-9]{3}");
 	}
 	
 	/**
